@@ -1,0 +1,147 @@
+<!DOCTYPE>
+
+<html>
+
+	<head>
+		<title>victor.amsantos - stilingue contest</title>
+
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+
+		<script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+
+		<script src="{{ url_for('.static', filename='cytoscape-automove.js') }}"></script>
+
+		<style>
+			body {
+				font-family: helvetica neue, helvetica, liberation sans, arial, sans-serif;
+				font-size: 14px;
+			}
+
+			#cy {
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				right: 0;
+				z-index: 999;
+			}
+
+			h1, h2 {
+				opacity: 0.5;
+				font-size: 1em;
+				font-weight: bold;
+			}
+
+			h2 {
+				font-size: 0.8em;
+			}
+		</style>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', function(){
+
+				var cy = window.cy = cytoscape({
+					container: document.getElementById('cy'),
+
+					layout: {
+						name: 'preset'
+					},
+
+					style: [
+						{
+						selector: 'node',
+						style: {
+							'content': 'data(id)'
+						}
+					},
+                    {
+						selector: '[is_related="synonym"]',
+						style: {
+                            'background-color': 'black'
+						}
+					},
+                    {
+						selector: '[is_related="antonym"]',
+						style: {
+                            'background-color': 'red'
+						}
+					},
+					{
+						selector: '[id="mid"]',
+						style: {
+						    'content': 'data(name)',
+						    'color': 'red',
+                            'background-color': '#31ff41'
+						}
+					},
+					{
+						selector: '[relation="synonym"]',
+						style: {
+						    'content': 'data(relation)',
+                            'color': 'purple',
+							'curve-style': 'bezier',
+							'target-arrow-shape': 'triangle'
+						}
+					},
+                    {
+						selector: '[relation="antonym"]',
+						style: {
+						    'content': 'data(relation)',
+                            'color': 'orange',
+							'curve-style': 'bezier',
+							'target-arrow-shape': 'triangle'
+						}
+					},
+					],
+                elements: {{elements | safe}}
+				});
+
+				cy.makeLayout({
+					name: 'circle'
+				}).run();
+
+				cy.automove({
+					nodesMatching: cy.$('#mid'),
+					reposition: 'mean',
+					meanOnSelfPosition: function( node ){ return false; }
+				});
+
+				// dragging mid drags its neighbourhood with it
+				cy.automove({
+					nodesMatching: cy.$('#mid').neighbourhood().nodes(),
+					reposition: 'drag',
+					dragWith: cy.$('#mid')
+				});
+
+				cy.fit( 50 ); // fit to all the layouts
+
+				cy.automove({
+					nodesMatching: '.automove-viewport',
+					reposition: 'viewport'
+				});
+
+				var lastTapped = null
+				cy.$('.clickable').on('tap', function( evt ){
+					var tgt = evt.target || evt.cyTarget; // 3.x || 2.x
+					if(lastTapped == tgt.data().id){
+						window.location.href = '?word='+tgt.data().id;
+					}else {
+						document.getElementById("single-click").textContent=cy.$('#mid').data().name+" is "+tgt.data().is_related+" of "+tgt.data().id;
+					}
+					lastTapped = tgt.data().id;
+				});
+
+
+			});
+		</script>
+	</head>
+
+	<body>
+		<h1>victor.amsantos - stilingue contest</h1>
+		<h2 id="single-click">Single click to retrieve info</h2>
+		<h2>Double click to research</h2>
+		<h2><b style="color:black">black</b> are synonyms</h2>
+		<h2><b style="color:red">red</b> are antonyms</h2>
+		<div id="cy"></div>
+	</body>
+</html>

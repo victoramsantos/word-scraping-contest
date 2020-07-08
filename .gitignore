@@ -1,6 +1,10 @@
 #Custom
 .idea
 venv
+infra/container/data/
+.terraform
+*.tfvars
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

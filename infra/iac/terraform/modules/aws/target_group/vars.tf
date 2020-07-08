@@ -1,0 +1,10 @@
+variable "tg_port" {}
+variable "tg_protocol" {}
+variable "vpc_id" {}
+variable "hc_path" {}
+variable "hc_port" {}
+variable "hc_threshold" {}
+variable "hc_unhealthy_threshold" {}
+variable "hc_timeout" {}
+variable "hc_interval" {}
+variable "hc_status_code" {}
