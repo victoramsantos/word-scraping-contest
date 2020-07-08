@@ -27,16 +27,16 @@ Acesse o diretório [deploy_env](providers/aws/stacks/deploy_env) e execute o co
 terraform init
 ```
 Após isso será necessário aplicar o provider. Ao ser aplicado será solicitado que informe o valor para as variáveis:
-- **frontend_img** - imagem docker do frontend (utilize: victoramsantos/stilingue-frontend:1.0.0)
-- **backend_img** - imagem docker do backend (utilize: victoramsantos/stilingue-backend:1.0.0)
+- **frontend_img** - imagem docker do frontend (utilize: victoramsantos/wscraping-frontend:1.0.0)
+- **backend_img** - imagem docker do backend (utilize: victoramsantos/wscraping-backend:1.0.0)
 - **vpc_id** - Nome da vpc que será feito o deploy da aplicação (ex.:vpc-77f0f00d)
 - **public_subnets** - Nome das subnets que será feito o deploy dos loadbalancers  (ex.:["subnet-16d92b37","subnet-3f192201"])
 - **ec2_key_pair:** - Nome da chave que será utilizada para acessar a EC2.
 
 Para facilitar este processo, crie um arquivo chamado _env.tfvars_. Para exemplicar, seu arquivo deverá ser:
 ```
-frontend_img="victoramsantos/stilingue-frontend:1.0.0"
-backend_img="victoramsantos/stilingue-backend:1.0.0"
+frontend_img="victoramsantos/wscraping-frontend:1.0.0"
+backend_img="victoramsantos/wscraping-backend:1.0.0"
 vpc_id="vpc-77f0f00d"
 public_subnets=["subnet-16d92b37","subnet-3f192201"]
 ec2_key_pair="nova-pem"
