@@ -13,6 +13,11 @@ Para construir a aplicação foi escolhida a linguagem [Python](https://www.pyth
 
 Por fim, para disponibilizar o uso da aplicação através de containers, foi utilizado o [docker hub](https://hub.docker.com/) e tendo as imagens disponibilizadas no repositório [hub.docker.com/u/victoramsantos](https://hub.docker.com/u/victoramsantos). Já para disponibilizar publicamente, foi construido um script em [terraform](https://www.terraform.io/) para realizar o deploy dos containers da aplicação na infraestrutura da [aws](https://aws.amazon.com/).
 
+## Aplicações
+- [frontend](./frontend)
+- [backend](./backend)
+- [infra as code](./infra)
+
 ## Resultado
 Abaixo é mostrado a visualização do frontend da aplicação. Do lado esquerdo é mostrado a descrição de uso da ferramenta:
 - um clique em nó para exibir sua informação
