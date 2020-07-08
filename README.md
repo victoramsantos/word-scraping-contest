@@ -12,3 +12,10 @@ Como ferramenta de exibição dos dados foi utilizada a biblioteca [cytoscape](h
 Para construir a aplicação foi escolhida a linguagem [Python](https://www.python.org/) na sua versão 3.8 e o framework web [Flask](https://flask.palletsprojects.com/en/1.1.x/). A linguagem foi escolhida pela sua facilidade de desenvolvimento e pela grande gama de bibliotecas disponíveis para scraping, manipulação de grafos e páginas webs.
 
 Por fim, para disponibilizar o uso da aplicação através de containers, foi utilizado o [docker hub](https://hub.docker.com/) e tendo as imagens disponibilizadas no repositório [hub.docker.com/u/victoramsantos](https://hub.docker.com/u/victoramsantos). Já para disponibilizar publicamente, foi construido um script em [terraform](https://www.terraform.io/) para realizar o deploy dos containers da aplicação na infraestrutura da [aws](https://aws.amazon.com/).
+
+## Resultado
+Abaixo é mostrado a visualização do frontend da aplicação. Do lado esquerdo é mostrado a descrição de uso da ferramenta:
+- um clique em nó para exibir sua informação
+- dois cliques no nó para filtrar as informações a partir dele.
+
+![frontend](./assets/frontend.png)
