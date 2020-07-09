@@ -39,5 +39,3 @@ def __run(words: list):
 
         if not database.contains(remove_accents(word)):
             populate_database(word)
-            # p = multiprocessing.Process(target=populate_database, args=(word,))
-            # p.start()

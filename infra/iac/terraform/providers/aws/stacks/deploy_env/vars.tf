@@ -69,7 +69,7 @@ variable "env_prefix" {
 }
 
 variable "appname" {
-  default = "stilingue"
+  default = "wscraping"
 }
 
 variable "frontend_img" {
